@@ -1,1 +1,7 @@
-<Label text="Hello world"></Label>
+<GridLayout>
+  <ListView [items]="groceryList" class="small-spacing">
+    <template let-item="item">
+      <Label [text]="item.name" class="medium-spacing"></Label>
+    </template>
+  </ListView>
+</GridLayout>
