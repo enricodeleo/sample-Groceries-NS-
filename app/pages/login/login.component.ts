@@ -13,6 +13,7 @@ import { Page } from 'ui/page';
     'pages/login/login.css'
    ]
 })
+
 export class LoginComponent implements OnInit {
   user: User;
 
