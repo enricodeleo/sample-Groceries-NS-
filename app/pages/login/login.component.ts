@@ -1,23 +1,32 @@
-import { Component } from "@angular/core";
-import { User } from "../../shared/user/user";
-import { UserService } from "../../shared/user/user.service";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { User } from '../../shared/user/user';
+import { UserService } from '../../shared/user/user.service';
+import { Router } from '@angular/router';
+import { Page } from 'ui/page';
 
 @Component({
-  selector: "my-app",
-  providers: [UserService],
-  templateUrl: "pages/login/login.html",
-  styleUrls: ["pages/login/login-common.css", "pages/login/login.css"]
+  selector: 'my-app',
+  providers: [ UserService ],
+  templateUrl: 'pages/login/login.html',
+  styleUrls: [
+    'pages/login/login-common.css',
+    'pages/login/login.css'
+   ]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   user: User;
 
   isLoggingIn = true;
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor( private router: Router, private userService: UserService, private page: Page ) {
     this.user = new User();
-    this.user.email = "mariorrossi@rossi.com";
-    this.user.password = "12345678";
+    this.user.email = 'mariorrossi@rossi.com';
+    this.user.password = '12345678';
+  }
+
+  ngOnInit() {
+    this.page.actionBarHidden = true;
+    this.page.backgroundImage = 'res://bg_login';
   }
 
   submit() {
@@ -31,8 +40,8 @@ export class LoginComponent {
   login() {
     this.userService.login(this.user)
       .subscribe(
-        () => this.router.navigate(["/list"]),
-        (error) => alert("Unfortunately we could not find your account.")
+        () => this.router.navigate( [ '/list' ] ),
+        (error) => alert( 'Unfortunately we could not find your account.' )
       );
   }
 
@@ -40,10 +49,10 @@ export class LoginComponent {
     this.userService.register(this.user)
       .subscribe(
         () => {
-          alert("Your account was successfully created.");
+          alert( 'Your account was successfully created.' );
           this.toggleDisplay();
         },
-        () => alert("Unfortunately we were unable to create your account.")
+        () => alert( 'Unfortunately we were unable to create your account.' )
       );
   }
 
