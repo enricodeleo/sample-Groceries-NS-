@@ -1,6 +1,6 @@
-import * as application from "application";
-import * as platform from "platform";
-import * as utils from "utils/utils";
+import * as application from 'application';
+import * as platform from 'platform';
+import * as utils from 'utils/utils';
 
 declare var android: any;
 declare var UIResponder: any;
@@ -19,7 +19,7 @@ export function setStatusBarColors() {
         return true;
       }
     }, {
-        name: "AppDelegate",
+        name: 'AppDelegate',
         protocols: [UIApplicationDelegate]
       });
     application.ios.delegate = AppDelegate;
@@ -30,7 +30,7 @@ export function setStatusBarColors() {
   // for details on the technique used.
   if (application.android) {
     application.android.onActivityStarted = function() {
-      if (application.android && platform.device.sdkVersion >= "21") {
+      if (application.android && platform.device.sdkVersion >= '21') {
         let View = android.view.View;
         let window = application.android.startActivity.getWindow();
         window.setStatusBarColor(0x000000);
