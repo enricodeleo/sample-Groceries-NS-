@@ -12,18 +12,35 @@ export class GroceryListService {
 
   load() {
     let headers = new Headers();
-    // headers.append('Authorization', 'Bearer ' + Config.token);
+    headers.append('Authorization', 'Bearer ' + Config.token);
 
-    return this.http.get(Config.apiUrl + 'groceries', {
+    return this.http.get(Config.apiUrl + 'Groceries', {
       headers: headers
     })
     .map(res => res.json())
     .map(data => {
       let groceryList = [];
-      data.data.forEach((grocery) => {
-        groceryList.push( new Grocery( grocery.id, grocery.name ) );
+      data.Result.forEach((grocery) => {
+        groceryList.push( new Grocery( grocery.Id, grocery.Name ) );
       });
       return groceryList;
+    })
+    .catch(this.handleErrors);
+  }
+
+  add(name: string) {
+    let headers = new Headers();
+    headers.append("Authorization", "Bearer " + Config.token);
+    headers.append("Content-Type", "application/json");
+
+    return this.http.post(
+      Config.apiUrl + "Groceries",
+      JSON.stringify({ Name: name }),
+      { headers: headers }
+    )
+    .map(res => res.json())
+    .map(data => {
+      return new Grocery(data.Result.Id, name);
     })
     .catch(this.handleErrors);
   }

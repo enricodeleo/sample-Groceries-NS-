@@ -32,16 +32,17 @@ export class UserService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.post(
-      Config.apiUrl + 'login',
+      Config.apiUrl + 'oauth/token',
       JSON.stringify({
         email: user.email,
-        password: user.password
+        password: user.password,
+        grant_type: 'password'
       }),
       { headers: headers }
     )
     .map(response => response.json())
     .do(data => {
-      Config.token = data.token;
+      Config.token = data.Result.access_token;
     })
     .catch(this.handleErrors);
   }
