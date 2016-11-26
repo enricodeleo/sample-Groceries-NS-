@@ -20,6 +20,10 @@ export class ListComponent implements OnInit {
 
   grocery = '';
 
+  isLoading = false; // api status
+
+  listLoaded = false; // helper to actually show content when retrieved from api
+
   @ViewChild('groceryTextField') groceryTextField: ElementRef;
 
   add() {
@@ -49,11 +53,14 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.groceryListService.load()
       .subscribe(loadedGroceries => {
         loadedGroceries.forEach((groceryObject) => {
           this.groceryList.unshift(groceryObject);
         });
+        this.isLoading = false;
+        this.listLoaded = true;
       });
   }
 }

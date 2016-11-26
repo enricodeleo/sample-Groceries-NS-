@@ -30,11 +30,11 @@ export class GroceryListService {
 
   add(name: string) {
     let headers = new Headers();
-    headers.append("Authorization", "Bearer " + Config.token);
-    headers.append("Content-Type", "application/json");
+    headers.append('Authorization', 'Bearer ' + Config.token);
+    headers.append('Content-Type', 'application/json');
 
     return this.http.post(
-      Config.apiUrl + "Groceries",
+      Config.apiUrl + 'Groceries',
       JSON.stringify({ Name: name }),
       { headers: headers }
     )
