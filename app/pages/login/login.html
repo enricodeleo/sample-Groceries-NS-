@@ -1,5 +1,15 @@
 <StackLayout #container>
-  <Image src="res://logo_login" stretch="none" horizontalAlignment="center"></Image>
+  <Carousel height="250" pageChanged="myChangeEvent" pageTapped="mySelectedEvent">
+    <CarouselItem id="slide1"  verticalAlignment="center" backgroundColor="#b3cde0" height="250">
+      <Label text="Signup now and take advantege of this service!" verticalAlignment="center" horizontalAlignment="center"></Label>
+    </CarouselItem>
+    <CarouselItem id="slide2" verticalAlignment="center" backgroundColor="#6497b1" height="250">
+      <Label text="Still in doubt? Come on!" verticalAlignment="center" horizontalAlignment="center"></Label>
+    </CarouselItem>
+    <CarouselItem id="slide3" verticalAlignment="center" backgroundColor="#005b96" height="250">
+      <Label text="Signup now and I'll be your best friend!" verticalAlignment="center" horizontalAlignment="center"></Label>
+    </CarouselItem>
+  </Carousel>
 
   <TextField #email hint="Email Address" keyboardType="email" [(ngModel)]="user.email" autocorrect="false" autocapitalizationType="none"></TextField>
 

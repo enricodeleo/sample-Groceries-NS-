@@ -1,12 +1,18 @@
+.list-item,
 .add-bar {
-  background-color: #CB1D00;
   padding: 5 10;
+}
+.list-item {
+  margin: 20 10;
 }
 .add-bar Image {
   height: 15;
   vertical-align: center;
   margin-left: 10;
   margin-right: 5;
+}
+.bg-red {
+  background-color: #CB1D00;
 }
 TextField {
   color: white;

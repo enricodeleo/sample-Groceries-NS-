@@ -3,14 +3,17 @@
 </ActionBar>
 
 <GridLayout rows="auto, *">
-  <GridLayout row="0" columns="*, auto" class="add-bar">
+  <GridLayout row="0" columns="*, auto" class="add-bar bg-red">
     <TextField [(ngModel)]="grocery" #groceryTextField hint="Enter a grocery item" col="0"></TextField>
     <Image src="res://add" (tap)="add()" col="1"></Image>
   </GridLayout>
 
-  <ListView [items]="groceryList" row="1" class="small-spacing" [class.visible]="listLoaded">
+  <ListView [items]="groceryList" row="1" [class.visible]="listLoaded">
     <template let-item="item">
-      <Label [text]="item.name" class="medium-spacing"></Label>
+      <GridLayout columns="*, auto" class="list-item">
+        <Label row="0" col="0" [text]="item.name"></Label>
+        <Image row="0" col="1" src="res://delete" class="bg-red"></Image>
+      </GridLayout>
     </template>
   </ListView>
 
